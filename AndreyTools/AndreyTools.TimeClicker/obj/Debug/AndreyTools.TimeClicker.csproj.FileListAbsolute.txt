@@ -1,9 +1,9 @@
 C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\bin\Debug\AndreyTools.TimeClicker.exe.config
-C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\bin\Debug\AndreyTools.TimeClicker.exe
-C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\bin\Debug\AndreyTools.TimeClicker.pdb
 C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\obj\Debug\AndreyTools.TimeClicker.csprojResolveAssemblyReference.cache
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\obj\Debug\AndreyTools.TimeClicker.MainForm.resources
 C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\obj\Debug\AndreyTools.TimeClicker.Properties.Resources.resources
 C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\obj\Debug\AndreyTools.TimeClicker.csproj.GenerateResource.Cache
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\bin\Debug\AndreyTools.TimeClicker.exe
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\bin\Debug\AndreyTools.TimeClicker.pdb
 C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\obj\Debug\AndreyTools.TimeClicker.exe
 C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\obj\Debug\AndreyTools.TimeClicker.pdb
-C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\obj\Debug\AndreyTools.TimeClicker.TimerClickerForm.resources

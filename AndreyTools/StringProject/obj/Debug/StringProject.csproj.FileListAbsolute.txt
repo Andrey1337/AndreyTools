@@ -1,0 +1,6 @@
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\StringProject\bin\Debug\StringProject.exe.config
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\StringProject\bin\Debug\StringProject.exe
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\StringProject\bin\Debug\StringProject.pdb
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\StringProject\obj\Debug\StringProject.csprojResolveAssemblyReference.cache
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\StringProject\obj\Debug\StringProject.exe
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\StringProject\obj\Debug\StringProject.pdb

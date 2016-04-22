@@ -16,7 +16,7 @@ namespace AndreyTools.TimeClicker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TimerClickerForm());
+            Application.Run(new MainForm());
         }
     }
 }
