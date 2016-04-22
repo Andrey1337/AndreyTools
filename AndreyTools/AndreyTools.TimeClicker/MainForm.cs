@@ -1,75 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Timer = System.Windows.Forms.Timer;
 using System.Configuration;
 using System.IO;
+using Newtonsoft.Json;
+using System.Linq;
 
 namespace AndreyTools.TimeClicker
 {
     public partial class MainForm : Form
     {
-        private Label _label;
-
-        List<string> _points;
-
-        private int[] _secArray;
-        private Point[] _pointsArray;
-
-        private NumericUpDown _hrsNumeric;
-        private NumericUpDown _minNumeric;
-        private NumericUpDown _secNumeric;
-
         private delegate void controller();
 
-        private Timer _timer;
+        List<TimePoint> _timePoints;
+
+        private DateTime _time;
         string _path;
 
-        private int _seconds;
         private bool _isStarted;
-
-        private Button _startButton;
 
         private GlobalHotkey _ghtAddPoint;
         private enum HotKeys { AddPoint }
         private enum Tabs { TimeClicker }
 
+        private long _milliseconds;
+
         public MainForm()
         {
             InitializeComponent();
-            _points = new List<string>();
-            _path = ConfigurationSettings.AppSettings["Path"];
+
             _ghtAddPoint = new GlobalHotkey((int)HotKeys.AddPoint, Constants.ALT + Constants.SHIFT, Keys.A, this);
-            LoadFromFile(_path);
-            _label = time;
-            _hrsNumeric = hrsNumeric;
-            _minNumeric = minNumeric;
-            _secNumeric = secNumeric;
-            _timer = timer;
-            _timer.Interval = 1000;
+
+            _path = ConfigurationSettings.AppSettings["Path"];
+            _timePoints = DeserializeFromJson(_path);
+
             _isStarted = false;
-            _startButton = startButton;
+            _milliseconds = 0;
             UpdateListbox();
         }
 
-        public void LoadFromFile(string path)
+        public static void SerializeToJson(IEnumerable<TimePoint> timePoints, string path)
         {
-            if (File.Exists(path))
-            {
-                _points = File.ReadAllLines(path).ToList();
-            }
+            List<string> allTimePointJSons = new List<string>();
+
+            allTimePointJSons.Add(JsonConvert.SerializeObject(timePoints.ToList()));
+
+            File.WriteAllLines(path, allTimePointJSons);
         }
 
-        public void SaveToFile(string path)
+        public static List<TimePoint> DeserializeFromJson(string path)
         {
-            File.WriteAllLines(path, _points);
+            List<TimePoint> timePoints = new List<TimePoint>();
+            try
+            {
+                timePoints = JsonConvert.DeserializeObject<List<TimePoint>>(File.ReadAllLines(path)[0]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cant read the file: {0}", path);
+            }
+            return timePoints;
         }
 
         protected override void WndProc(ref Message m)
@@ -100,35 +91,23 @@ namespace AndreyTools.TimeClicker
         {
             if (!_isStarted)
             {
-                _secArray = new int [_points.Count];
-                _pointsArray = new Point[_points.Count];
-
-                foreach(string text in _points)
-                {
-                    int xIndex = text.LastIndexOf("X:");
-                    int yIndex = text.IndexOf("Y:");
-                    string x ="";
-                    for (int i = xIndex; xIndex < yIndex; i++)
-                        x += text[i];
-                }
-
-                _timer.Start();
-                _startButton.Text = "Stop";
+                timer.Start();
+                startButton.Text = "Stop";
                 _isStarted = true;
-                _points.Sort();
+                _timePoints.Sort();
                 UpdateListbox();
                 panel1.Enabled = false;
             }
             else
             {
-                _timer.Stop();
-                _startButton.Text = "Start";
+                timer.Stop();
+                startButton.Text = "Start";
                 _isStarted = false;
                 panel1.Enabled = true;
             }
         }
 
-        private static int TimeToSeconds(int hours, int minutes, int seconds)
+        private static long TimeToSeconds(int hours, int minutes, int seconds)
         {
             return (hours * 60 + minutes) * 60 + seconds;
         }
@@ -146,13 +125,13 @@ namespace AndreyTools.TimeClicker
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            _seconds++;
+            _milliseconds += 10;
         }
 
         public void UpdateListbox()
         {
             listBox.DataSource = null;
-            listBox.DataSource = _points;
+            listBox.DataSource = _timePoints;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -160,7 +139,12 @@ namespace AndreyTools.TimeClicker
             string description = descriptionTextBox.Text.Trim();
             if (description == "")
                 description = "Without Description";
-            _points.Add(CreatePointString((int)_hrsNumeric.Value, (int)_minNumeric.Value, (int)_secNumeric.Value, (int)xNumeric.Value, (int)yNumeric.Value, description));
+
+            long timeToSeconds = TimeToSeconds((int)hrsNumeric.Value, (int)minNumeric.Value, (int)secNumeric.Value);
+            Point point = new Point((int)xNumeric.Value, (int)yNumeric.Value);
+
+            _timePoints.Add(new TimePoint(new DateTime().AddSeconds(timeToSeconds), point, description));
+
             UpdateListbox();
         }
 
@@ -182,11 +166,11 @@ namespace AndreyTools.TimeClicker
         {
             if (listBox.SelectedIndex > -1)
             {
-                _points.RemoveAt(listBox.SelectedIndex);
-                /*if(listBox.SelectedIndex > points.Count)
+                _timePoints.RemoveAt(listBox.SelectedIndex);
+                if (listBox.SelectedIndex > _timePoints.Count)
                 {
                     listBox.SelectedIndex--;
-                }*/
+                }
             }
             UpdateListbox();
         }
@@ -195,9 +179,9 @@ namespace AndreyTools.TimeClicker
         {
             if (listBox.SelectedIndex > 0)
             {
-                string text = _points[listBox.SelectedIndex];
-                _points[listBox.SelectedIndex] = _points[listBox.SelectedIndex - 1];
-                _points[listBox.SelectedIndex - 1] = text;
+                TimePoint timePoint = _timePoints[listBox.SelectedIndex];
+                _timePoints[listBox.SelectedIndex] = _timePoints[listBox.SelectedIndex - 1];
+                _timePoints[listBox.SelectedIndex - 1] = timePoint;
                 UpdateListbox();
                 listBox.SelectedIndex--;
             }
@@ -205,11 +189,11 @@ namespace AndreyTools.TimeClicker
 
         private void moveDownButton_Click(object sender, EventArgs e)
         {
-            if (listBox.SelectedIndex < _points.Count - 1)
+            if (listBox.SelectedIndex < _timePoints.Count - 1)
             {
-                string text = _points[listBox.SelectedIndex];
-                _points[listBox.SelectedIndex] = _points[listBox.SelectedIndex + 1];
-                _points[listBox.SelectedIndex + 1] = text;
+                TimePoint timePoint = _timePoints[listBox.SelectedIndex];
+                _timePoints[listBox.SelectedIndex] = _timePoints[listBox.SelectedIndex + 1];
+                _timePoints[listBox.SelectedIndex + 1] = timePoint;
                 UpdateListbox();
                 listBox.SelectedIndex++;
             }
@@ -222,19 +206,19 @@ namespace AndreyTools.TimeClicker
                 string description = descriptionTextBox.Text.Trim();
                 if (description == "")
                     description = "Without Description";
-                _points[listBox.SelectedIndex] = CreatePointString((int)_hrsNumeric.Value, (int)_minNumeric.Value, (int)_secNumeric.Value, (int)xNumeric.Value, (int)yNumeric.Value, description);
+
+                long timeToSeconds = TimeToSeconds((int)hrsNumeric.Value, (int)minNumeric.Value, (int)secNumeric.Value);
+                Point point = new Point((int)xNumeric.Value, (int)yNumeric.Value);
+
+                _timePoints[listBox.SelectedIndex] = new TimePoint(new DateTime().AddSeconds(timeToSeconds), point, description);
                 UpdateListbox();
             }
         }
 
-        private string CreatePointString(int hours, int minutes, int seconds, int x, int y, string description)
-        {
-            return String.Format("{0}:{1}:{2} | X:{3}, Y:{4} | {5}", hours, minutes, seconds, x, y, description);
-        }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveToFile(_path);
+            SerializeToJson(_timePoints, _path);
             if (!_ghtAddPoint.Unregiser())
                 MessageBox.Show("Some Hotkey failed to unregister!");
         }

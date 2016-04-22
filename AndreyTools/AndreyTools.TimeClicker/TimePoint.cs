@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
-namespace StringProject
+
+namespace AndreyTools.TimeClicker
 {
     public class TimePoint
     {
@@ -21,7 +23,7 @@ namespace StringProject
 
         public override string ToString()
         {
-            return String.Format("Time: {0}| Point: {1} | Description: {2}", Time.ToLongTimeString(), Point, Description);
+            return String.Format("Time: {0} | Point: {1} | {2}", Time.ToLongTimeString(), Point, Description);
         }
     }
 }

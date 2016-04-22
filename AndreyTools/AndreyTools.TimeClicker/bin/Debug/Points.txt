@@ -1,6 +1,1 @@
-1:0:0 | X:0, Y:0 | Without Description
-2:0:0 | X:0, Y:0 | Without Description
-3:0:0 | X:0, Y:0 | Without Description
-4:0:0 | X:0, Y:0 | Without Description
-0:0:0 | X:0, Y:0 | Without Description
-12:2:23 | X:3, Y:5 | weweqwe
+[{"Time":"0001-01-01T00:00:00","Point":"0, 0","Description":"Without Description"},{"Time":"0001-01-01T00:00:00","Point":"0, 0","Description":"Without Description"}]

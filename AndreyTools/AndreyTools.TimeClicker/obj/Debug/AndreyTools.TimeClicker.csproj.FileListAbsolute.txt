@@ -7,3 +7,4 @@ C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker
 C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\bin\Debug\AndreyTools.TimeClicker.pdb
 C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\obj\Debug\AndreyTools.TimeClicker.exe
 C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\obj\Debug\AndreyTools.TimeClicker.pdb
+C:\Users\Andrey\Documents\GitHub\AndreyTools\AndreyTools\AndreyTools.TimeClicker\bin\Debug\Newtonsoft.Json.dll

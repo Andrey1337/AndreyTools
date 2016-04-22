@@ -67,6 +67,7 @@
             // 
             // timer
             // 
+            this.timer.Interval = 10;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // tabPage1
@@ -78,7 +79,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(452, 414);
+            this.tabPage1.Size = new System.Drawing.Size(579, 414);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             // 
@@ -106,12 +107,12 @@
             this.panel1.Controls.Add(this.minNumeric);
             this.panel1.Location = new System.Drawing.Point(7, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(439, 300);
+            this.panel1.Size = new System.Drawing.Size(568, 300);
             this.panel1.TabIndex = 20;
             // 
             // xNumeric
             // 
-            this.xNumeric.Location = new System.Drawing.Point(284, 152);
+            this.xNumeric.Location = new System.Drawing.Point(407, 154);
             this.xNumeric.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -128,7 +129,7 @@
             // 
             // yNumeric
             // 
-            this.yNumeric.Location = new System.Drawing.Point(284, 178);
+            this.yNumeric.Location = new System.Drawing.Point(407, 180);
             this.yNumeric.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -145,7 +146,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(284, 242);
+            this.descriptionTextBox.Location = new System.Drawing.Point(407, 244);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(127, 20);
             this.descriptionTextBox.TabIndex = 61;
@@ -154,7 +155,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Azure;
-            this.label1.Location = new System.Drawing.Point(302, 226);
+            this.label1.Location = new System.Drawing.Point(425, 228);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 60;
@@ -165,7 +166,7 @@
             this.pointsLabel.AutoSize = true;
             this.pointsLabel.BackColor = System.Drawing.Color.Azure;
             this.pointsLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pointsLabel.Location = new System.Drawing.Point(304, 135);
+            this.pointsLabel.Location = new System.Drawing.Point(427, 137);
             this.pointsLabel.Name = "pointsLabel";
             this.pointsLabel.Size = new System.Drawing.Size(36, 13);
             this.pointsLabel.TabIndex = 59;
@@ -176,7 +177,7 @@
             this.timeLabel.AutoSize = true;
             this.timeLabel.BackColor = System.Drawing.Color.Azure;
             this.timeLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.timeLabel.Location = new System.Drawing.Point(304, 13);
+            this.timeLabel.Location = new System.Drawing.Point(427, 15);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(33, 13);
             this.timeLabel.TabIndex = 58;
@@ -187,7 +188,7 @@
             this.yCoordinatesLabel.AutoSize = true;
             this.yCoordinatesLabel.BackColor = System.Drawing.Color.LightSkyBlue;
             this.yCoordinatesLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.yCoordinatesLabel.Location = new System.Drawing.Point(362, 180);
+            this.yCoordinatesLabel.Location = new System.Drawing.Point(485, 182);
             this.yCoordinatesLabel.Name = "yCoordinatesLabel";
             this.yCoordinatesLabel.Size = new System.Drawing.Size(73, 13);
             this.yCoordinatesLabel.TabIndex = 57;
@@ -197,7 +198,7 @@
             // 
             this.xCoordinatesLabel.AutoSize = true;
             this.xCoordinatesLabel.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.xCoordinatesLabel.Location = new System.Drawing.Point(362, 154);
+            this.xCoordinatesLabel.Location = new System.Drawing.Point(485, 156);
             this.xCoordinatesLabel.Name = "xCoordinatesLabel";
             this.xCoordinatesLabel.Size = new System.Drawing.Size(73, 13);
             this.xCoordinatesLabel.TabIndex = 56;
@@ -258,14 +259,14 @@
             this.listBox.FormattingEnabled = true;
             this.listBox.Location = new System.Drawing.Point(85, 13);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(181, 277);
+            this.listBox.Size = new System.Drawing.Size(316, 277);
             this.listBox.TabIndex = 50;
             // 
             // secondsLabel
             // 
             this.secondsLabel.AutoSize = true;
             this.secondsLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.secondsLabel.Location = new System.Drawing.Point(362, 89);
+            this.secondsLabel.Location = new System.Drawing.Point(485, 91);
             this.secondsLabel.Name = "secondsLabel";
             this.secondsLabel.Size = new System.Drawing.Size(49, 13);
             this.secondsLabel.TabIndex = 49;
@@ -276,7 +277,7 @@
             this.minutesLabel.AutoSize = true;
             this.minutesLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.minutesLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.minutesLabel.Location = new System.Drawing.Point(362, 63);
+            this.minutesLabel.Location = new System.Drawing.Point(485, 65);
             this.minutesLabel.Name = "minutesLabel";
             this.minutesLabel.Size = new System.Drawing.Size(44, 13);
             this.minutesLabel.TabIndex = 48;
@@ -287,7 +288,7 @@
             // 
             this.hoursLabel.AutoSize = true;
             this.hoursLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.hoursLabel.Location = new System.Drawing.Point(362, 37);
+            this.hoursLabel.Location = new System.Drawing.Point(485, 39);
             this.hoursLabel.Name = "hoursLabel";
             this.hoursLabel.Size = new System.Drawing.Size(35, 13);
             this.hoursLabel.TabIndex = 47;
@@ -295,7 +296,7 @@
             // 
             // secNumeric
             // 
-            this.secNumeric.Location = new System.Drawing.Point(284, 87);
+            this.secNumeric.Location = new System.Drawing.Point(407, 89);
             this.secNumeric.Maximum = new decimal(new int[] {
             60,
             0,
@@ -312,7 +313,7 @@
             // 
             // hrsNumeric
             // 
-            this.hrsNumeric.Location = new System.Drawing.Point(284, 35);
+            this.hrsNumeric.Location = new System.Drawing.Point(407, 37);
             this.hrsNumeric.Maximum = new decimal(new int[] {
             24,
             0,
@@ -324,7 +325,7 @@
             // 
             // minNumeric
             // 
-            this.minNumeric.Location = new System.Drawing.Point(284, 61);
+            this.minNumeric.Location = new System.Drawing.Point(407, 63);
             this.minNumeric.Maximum = new decimal(new int[] {
             60,
             0,
@@ -336,7 +337,7 @@
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(96, 342);
+            this.startButton.Location = new System.Drawing.Point(197, 349);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(181, 48);
             this.startButton.TabIndex = 18;
@@ -347,7 +348,7 @@
             // time
             // 
             this.time.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.time.Location = new System.Drawing.Point(96, 309);
+            this.time.Location = new System.Drawing.Point(197, 316);
             this.time.Name = "time";
             this.time.Size = new System.Drawing.Size(181, 30);
             this.time.TabIndex = 19;
@@ -360,14 +361,14 @@
             this.tabControl1.Location = new System.Drawing.Point(1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(460, 440);
+            this.tabControl1.Size = new System.Drawing.Size(587, 440);
             this.tabControl1.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 442);
+            this.ClientSize = new System.Drawing.Size(591, 442);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.Name = "MainForm";

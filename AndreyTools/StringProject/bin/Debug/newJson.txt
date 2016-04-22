@@ -1,0 +1,2 @@
+{"Time":"0001-02-17T17:35:24.312","Point":{"X":500,"Y":500},"Description":"Game point"}
+{"Time":"0001-02-17T17:35:24.312","Point":{"X":321,"Y":352},"Description":"Browser point"}
