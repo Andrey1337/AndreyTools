@@ -35,7 +35,7 @@
             this.xNumeric = new System.Windows.Forms.NumericUpDown();
             this.yNumeric = new System.Windows.Forms.NumericUpDown();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.discriptionLabel = new System.Windows.Forms.Label();
             this.pointsLabel = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
             this.yCoordinatesLabel = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@
             this.hrsNumeric = new System.Windows.Forms.NumericUpDown();
             this.minNumeric = new System.Windows.Forms.NumericUpDown();
             this.startButton = new System.Windows.Forms.Button();
-            this.time = new System.Windows.Forms.Label();
+            this.timerLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -75,7 +75,7 @@
             this.tabPage1.BackColor = System.Drawing.Color.SteelBlue;
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.startButton);
-            this.tabPage1.Controls.Add(this.time);
+            this.tabPage1.Controls.Add(this.timerLabel);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -88,7 +88,7 @@
             this.panel1.Controls.Add(this.xNumeric);
             this.panel1.Controls.Add(this.yNumeric);
             this.panel1.Controls.Add(this.descriptionTextBox);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.discriptionLabel);
             this.panel1.Controls.Add(this.pointsLabel);
             this.panel1.Controls.Add(this.timeLabel);
             this.panel1.Controls.Add(this.yCoordinatesLabel);
@@ -151,15 +151,15 @@
             this.descriptionTextBox.Size = new System.Drawing.Size(127, 20);
             this.descriptionTextBox.TabIndex = 61;
             // 
-            // label1
+            // discriptionLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Azure;
-            this.label1.Location = new System.Drawing.Point(425, 228);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 60;
-            this.label1.Text = "Discription";
+            this.discriptionLabel.AutoSize = true;
+            this.discriptionLabel.BackColor = System.Drawing.Color.Azure;
+            this.discriptionLabel.Location = new System.Drawing.Point(425, 228);
+            this.discriptionLabel.Name = "discriptionLabel";
+            this.discriptionLabel.Size = new System.Drawing.Size(56, 13);
+            this.discriptionLabel.TabIndex = 60;
+            this.discriptionLabel.Text = "Discription";
             // 
             // pointsLabel
             // 
@@ -345,15 +345,15 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
-            // time
+            // timerLabel
             // 
-            this.time.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.time.Location = new System.Drawing.Point(197, 316);
-            this.time.Name = "time";
-            this.time.Size = new System.Drawing.Size(181, 30);
-            this.time.TabIndex = 19;
-            this.time.Text = "00:00:00";
-            this.time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.timerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timerLabel.Location = new System.Drawing.Point(197, 316);
+            this.timerLabel.Name = "timerLabel";
+            this.timerLabel.Size = new System.Drawing.Size(181, 30);
+            this.timerLabel.TabIndex = 19;
+            this.timerLabel.Text = "0:00:00";
+            this.timerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabControl1
             // 
@@ -391,7 +391,7 @@
         #endregion
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.Label time;
+        private System.Windows.Forms.Label timerLabel;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label desctiptionLabel;
@@ -412,7 +412,7 @@
         private System.Windows.Forms.Label yCoordinatesLabel;
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Label pointsLabel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label discriptionLabel;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.NumericUpDown yNumeric;
         private System.Windows.Forms.NumericUpDown xNumeric;

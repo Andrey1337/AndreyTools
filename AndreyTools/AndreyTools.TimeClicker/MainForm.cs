@@ -6,6 +6,7 @@ using System.Configuration;
 using System.IO;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Threading;
 
 namespace AndreyTools.TimeClicker
 {
@@ -13,10 +14,11 @@ namespace AndreyTools.TimeClicker
     {
         private delegate void controller();
 
-        List<TimePoint> _timePoints;
+        private List<TimePoint> _timePoints;
 
         private DateTime _time;
-        string _path;
+        private string _path;
+        private int _currentTimePoint;
 
         private bool _isStarted;
 
@@ -24,7 +26,6 @@ namespace AndreyTools.TimeClicker
         private enum HotKeys { AddPoint }
         private enum Tabs { TimeClicker }
 
-        private long _milliseconds;
 
         public MainForm()
         {
@@ -35,8 +36,10 @@ namespace AndreyTools.TimeClicker
             _path = ConfigurationSettings.AppSettings["Path"];
             _timePoints = DeserializeFromJson(_path);
 
+            _currentTimePoint = 0;
+
             _isStarted = false;
-            _milliseconds = 0;
+            _time = new DateTime(0);
             UpdateListbox();
         }
 
@@ -58,7 +61,7 @@ namespace AndreyTools.TimeClicker
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Cant read the file: {0}", path);
+                MessageBox.Show(String.Format("Cant read the file: {0}", path));
             }
             return timePoints;
         }
@@ -97,6 +100,10 @@ namespace AndreyTools.TimeClicker
                 _timePoints.Sort();
                 UpdateListbox();
                 panel1.Enabled = false;
+                _time = new DateTime(0);
+                _currentTimePoint = 0;
+                if (listBox.Items.Count >= 0)
+                    listBox.SelectedIndex = 0;
             }
             else
             {
@@ -125,12 +132,23 @@ namespace AndreyTools.TimeClicker
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            _milliseconds += 10;
+            _time = _time.AddMilliseconds(10);
+            timerLabel.Text = _time.ToLongTimeString();
+
+            while (_currentTimePoint < _timePoints.Count && _time == _timePoints[_currentTimePoint].Time)
+            {
+                MouseClickProperties.DoMouseClick(_timePoints[_currentTimePoint].Point.X, _timePoints[_currentTimePoint].Point.Y);
+                _currentTimePoint++;
+                if (_currentTimePoint < _timePoints.Count)
+                    listBox.SelectedIndex = _currentTimePoint;
+            }
+
         }
 
         public void UpdateListbox()
         {
             listBox.DataSource = null;
+            _timePoints.Sort();
             listBox.DataSource = _timePoints;
         }
 
@@ -143,9 +161,12 @@ namespace AndreyTools.TimeClicker
             long timeToSeconds = TimeToSeconds((int)hrsNumeric.Value, (int)minNumeric.Value, (int)secNumeric.Value);
             Point point = new Point((int)xNumeric.Value, (int)yNumeric.Value);
 
-            _timePoints.Add(new TimePoint(new DateTime().AddSeconds(timeToSeconds), point, description));
-
-            UpdateListbox();
+            TimePoint timePoint = new TimePoint(new DateTime().AddSeconds(timeToSeconds), point, description);
+            if (IsTimePointTimeInUsing(_timePoints, timePoint))
+            {
+                _timePoints.Add(timePoint);
+                UpdateListbox();
+            }
         }
 
         private void AddPoint()
@@ -166,8 +187,9 @@ namespace AndreyTools.TimeClicker
         {
             if (listBox.SelectedIndex > -1)
             {
+                int savedSelectIndex = listBox.SelectedIndex;
                 _timePoints.RemoveAt(listBox.SelectedIndex);
-                if (listBox.SelectedIndex > _timePoints.Count)
+                if (listBox.SelectedIndex >= _timePoints.Count)
                 {
                     listBox.SelectedIndex--;
                 }
@@ -199,6 +221,16 @@ namespace AndreyTools.TimeClicker
             }
         }
 
+        private bool IsTimePointTimeInUsing(List<TimePoint> timePoints, TimePoint currentTimePoint)
+        {
+            foreach (var time in timePoints)
+            {
+                if (time.Time == currentTimePoint.Time)
+                    return false;
+            }
+            return true;
+        }
+
         private void updateButton_Click(object sender, EventArgs e)
         {
             if (listBox.SelectedIndex != -1)
@@ -210,8 +242,12 @@ namespace AndreyTools.TimeClicker
                 long timeToSeconds = TimeToSeconds((int)hrsNumeric.Value, (int)minNumeric.Value, (int)secNumeric.Value);
                 Point point = new Point((int)xNumeric.Value, (int)yNumeric.Value);
 
-                _timePoints[listBox.SelectedIndex] = new TimePoint(new DateTime().AddSeconds(timeToSeconds), point, description);
-                UpdateListbox();
+                TimePoint timePoint = new TimePoint(new DateTime().AddSeconds(timeToSeconds), point, description);
+                if (IsTimePointTimeInUsing(_timePoints, timePoint))
+                {
+                    _timePoints[listBox.SelectedIndex] = timePoint;
+                    UpdateListbox();
+                }
             }
         }
 

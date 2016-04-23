@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace AndreyTools.TimeClicker
 {
-    public class TimePoint
+    public class TimePoint : IComparable
     {
         public DateTime Time { get;  set; }
         public Point Point { get; set; }
@@ -24,6 +24,16 @@ namespace AndreyTools.TimeClicker
         public override string ToString()
         {
             return String.Format("Time: {0} | Point: {1} | {2}", Time.ToLongTimeString(), Point, Description);
+        }
+
+        public int CompareTo(object obj)
+        {
+            TimePoint point = (TimePoint)obj;
+            if (this.Time > point.Time)
+                return 1;
+            if (this.Time < point.Time)
+                return -1;
+            return 0;
         }
     }
 }
